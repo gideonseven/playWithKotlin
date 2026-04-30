@@ -1,8 +1,15 @@
 package com.gideon
 
+fun main() {
+
+
+    reverseString(charArrayOf('a', 'b', 'c', 'd', 'e'))
+
+}
+
 fun reverseString(s: CharArray): Unit {
     var left = 0
-    var right = s.size-1
+    var right = s.size - 1
 
     while (left < right) {
         val temp = s[left]
