@@ -26,32 +26,54 @@ fun main() {
 
 fun solution(nums: IntArray, k: Int) {
     var x = -1
-    var newList = arrayListOf<Int>()
+    val newList = arrayListOf<Int>()
+    val negativeOne = -1
 
     //step 1:
-    // remove negative number
+    // remove negative number by multiplying to minus 1
     for (i in nums.indices) {
-        if (i < 0) {
-            x = i * i
+        x = if (nums[i] < 0) {
+            nums[i] * negativeOne
         } else {
-            x = i
+            nums[i]
         }
         newList.add(x)
     }
+
+    println(newList)
+
     //step 2
     //sort the number from highest to lowest to prepare the max sum
-    for (i in 0 until newList.size - 1) {
-        print("$i")
+    for (i in newList.indices) {
+//        println("this is I - ${newList[i]}")
 
-//        var temp = 0
-//        if(i <  i + 1){
-//            //0
-//            temp = i
-//
-//        }
-
+        for (j in newList.indices) {
+            if(newList[i] > newList[j]){
+                val temp = newList[i]
+                newList[i] = newList[j]
+                newList[j] = temp
+            }
+//            if(newList[i] < newList[j])
+//            println("This is J - ${newList[j]}")
+//            println(newList[i])
+//            println(newList[j])
+        }
     }
-//    print(newList)
+
+    println(newList)
 
 
+    //step 3
+    //take k many elements from the list to get the maximum sum
+    //meaning take the n-first element from the sorted list
+    var sum = 0
+    if(k > newList.size){
+        println("k is greater than the size of the list")
+    } else {
+        for (i in 0 until newList.size - k - 1) {
+            println("this is i - ${newList[i]}")
+            sum += newList[i]
+        }
+    }
+    println(sum)
 }
